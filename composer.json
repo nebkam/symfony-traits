@@ -1,0 +1,15 @@
+{
+  "name": "nebkam/symfony-traits",
+  "description": "Helper trait to ease writing APIs in Symfony",
+  "license": "MIT",
+  "require": {
+    "symfony/http-foundation": "3.*",
+    "symfony/http-kernel": "3.*",
+    "symfony/form": "3.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Nebkam\\SymfonyTraits\\": "src"
+    }
+  }
+}
