@@ -3,7 +3,7 @@ Few helper traits for quicker API  development in Symfony
 
 ## FormTrait
 ### `handleJSONForm` 
-- validation helper for JSON data sent in `POST`, `PUT` or `PATCH` request content
+- controller helper method for JSON data sent in `POST`, `PUT` or `PATCH` request content
 - generally speaking, sending JSON content is more flexible than forms, for CRUD with JS frameworks.
 ```php
 public function create(Request $request)
@@ -20,7 +20,7 @@ public function edit(Request $request,Entity $entity)
 ```
 
 ### `handleForm` 
-- validation helper for traditional form data in `GET` or `POST`
+- controller helper method for traditional form data in `GET` or `POST`
 - I advice using traditional form data only when JSON is out of place (i.e. `GET` params)
 ```php
 public function example(Request $request)
