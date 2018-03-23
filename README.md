@@ -33,3 +33,26 @@ public function example(Request $request)
 	
 	// do something with $domain
 ```
+
+## `SearchParamParseableTrait`
+- domain/filter helper method for parsing `SearchParam` annotations
+- used for generic mapping domain/filter classes to common query builder setters
+- currently supports Doctrine ODM Query Builder
+```php
+use Nebkam\SymfonyTraits\Annotation\SearchParam;
+
+class Filter {
+	/**
+	* @SearchParam(type="string")
+	*/
+	public $foo;
+}
+
+$filter = new Filter();
+$filter->foo = 'bar';
+```
+would map to..
+```php
+$queryBuilder->field("foo")->equals("bar");
+```
+- use `callback` for multiple or complex builder setters
