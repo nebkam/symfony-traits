@@ -69,7 +69,8 @@ trait FormTrait
 	 */
 	protected function handleFormErrors(Form $form)
 		{
-		if (!$form->isValid())
+		if ($form->isSubmitted()
+			&& !$form->isValid())
 			{
 			$errors = [];
 			foreach ($form->getErrors(true) as $error)
