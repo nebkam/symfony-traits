@@ -34,25 +34,63 @@ public function example(Request $request)
 	// do something with $domain
 ```
 
-## `SearchParamParseableTrait`
-- domain/filter helper method for parsing `SearchParam` annotations
-- used for generic mapping domain/filter classes to common query builder setters
+## SearchParamParseableTrait
+### `parseSearchParam`
+- filter helper method for parsing `SearchParam` annotations
+- used for generic mapping filter classes to common query builder setters
 - currently supports Doctrine ODM Query Builder
 ```php
 use Nebkam\SymfonyTraits\Annotation\SearchParam;
 
 class Filter {
 	/**
-	* @SearchParam(type="string")
+	* @SearchParam(type="int")
 	*/
 	public $foo;
+	/**
+	* @SearchParam(type="string", field="customField")
+	*/
+	public $bar;
+	/**
+	* @SearchParam(type="int_array")
+	*/
+	public $baz;
+	/**
+	* @SearchParam(type="float_range", field="price", direction="from")
+	*/
+	public $priceFrom;
+	/**
+	* @SearchParam(type="float_range", field="price", direction="to")
+	*/
+	public $priceTo;
+	/**
+    * @SearchParam(callback={"Filter", "myCallback"})
+    */
+	public $custom;
+	
+	public static function myCallback($field, $value, $queryBuilder)
+		{
+		// call some setters on $queryBuilder
+		
+		return $queryBuilder;
+		}
 }
 
 $filter = new Filter();
-$filter->foo = 'bar';
+$filter->foo = "14";
+$filter->bar = "Hello";
+$filter->baz = [1,2];
+$filter->priceFrom = 450.00;
+$filter->priceTo = 1000.00;
 ```
 would map to..
 ```php
-$queryBuilder->field("foo")->equals("bar");
+$queryBuilder
+	->field("foo")->equals(14)              // casted to int
+	->field("customField")->equals("Hello") // field alias
+	->field("baz")->in([1, 2])              // multiple values
+	->field("price")->gte(450.00)           // range
+	->field("price")->lte(1000.00)          // range
+	...                                     // some setters called in Filter::myCallback
 ```
 - use `callback` for multiple or complex builder setters
