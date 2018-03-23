@@ -5,10 +5,7 @@
   "require": {
     "symfony/http-foundation": "3.* || 4.*",
     "symfony/http-kernel": "3.* || 4.*",
-    "symfony/form": "3.* || 4.*",
-    "doctrine/annotations": "1.5.*",
-    "alcaeus/mongo-php-adapter": "1.0.7",
-    "doctrine/mongodb-odm": "^1.1"
+    "symfony/form": "3.* || 4.*"
   },
   "autoload": {
     "psr-4": {
