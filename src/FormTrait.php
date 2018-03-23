@@ -33,7 +33,7 @@ trait FormTrait
 	 * @param Request $request Request with JSON posted data
 	 * @param object $domain
 	 * @param string $formType
-	 * @param boolean $clearMissingFields
+	 * @param boolean $clearMissingFields set to TRUE when you want to validate the whole form (i.e. in POST or PUT) or to FALSE when form contains partial data (i.e. in PATCH)
 	 * @throws BadJSONRequestException
 	 */
 	protected function handleJSONForm(Request $request, $domain, $formType, $clearMissingFields = true)
