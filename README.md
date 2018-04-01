@@ -5,6 +5,7 @@ Few helper traits for quicker API  development in Symfony
 ### `handleJSONForm` 
 - controller helper method for JSON data sent in `POST`, `PUT` or `PATCH` request content
 - generally speaking, sending JSON content is more flexible than forms, for CRUD with JS frameworks.
+
 ```php
 public function create(Request $request)
 	{
@@ -12,6 +13,7 @@ public function create(Request $request)
 	$this->handleJSONForm($request, $entity, EntityType::class);
 	// persist and flush $entity
 ```
+
 ```php
 public function edit(Request $request,Entity $entity)
 	{
@@ -22,6 +24,7 @@ public function edit(Request $request,Entity $entity)
 ### `handleForm` 
 - controller helper method for traditional form data in `GET` or `POST`
 - I advice using traditional form data only when JSON is out of place (i.e. `GET` params)
+
 ```php
 public function example(Request $request)
 	{
@@ -33,3 +36,18 @@ public function example(Request $request)
 	
 	// do something with $domain
 ```
+
+### `handleUpload`
+- controller helper method to validate a single file upload
+- a lightweight alternative to a [File constraint](http://symfony.com/doc/current/reference/constraints/File.html), when you need just one file, not the whole form
+
+```php
+public function uploadImage(Request $request)
+	{
+	$file = $this->handleUpload($request, 'image');
+	
+	// do something with $file
+	}
+```
+
+

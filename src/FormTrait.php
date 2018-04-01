@@ -91,6 +91,7 @@ trait FormTrait
 	 *
 	 * @param Request $request
 	 * @param string $fieldName
+	 * @return UploadedFile
 	 */
 	protected function handleUpload(Request $request, $fieldName)
 		{
@@ -98,7 +99,11 @@ trait FormTrait
 			{
 			/** @var $file UploadedFile */
 			$file = $request->files->get($fieldName);
-			if (!$file->isValid())
+			if ($file->isValid())
+				{
+				return $file;
+				}
+			else
 				{
 				throw new ValidationException([$file->getErrorMessage()]);
 				}
