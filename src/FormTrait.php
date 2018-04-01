@@ -4,8 +4,10 @@ namespace Nebkam\SymfonyTraits;
 
 use Nebkam\SymfonyTraits\Exception\ValidationException;
 use Nebkam\SymfonyTraits\Exception\BadJSONRequestException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Form;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 /**
  * @method Form createForm(string $type, mixed $data, array $options = null)
@@ -81,6 +83,29 @@ trait FormTrait
 				];
 				}
 			throw new ValidationException($errors);
+			}
+		}
+
+	/**
+	 * If this method does not throw an exception, consider the uploaded file valid
+	 *
+	 * @param Request $request
+	 * @param string $fieldName
+	 */
+	protected function handleUpload(Request $request, $fieldName)
+		{
+		if ($request->files->count() > 0)
+			{
+			/** @var $file UploadedFile */
+			$file = $request->files->get($fieldName);
+			if (!$file->isValid())
+				{
+				throw new ValidationException([$file->getErrorMessage()]);
+				}
+			}
+		else
+			{
+			throw new BadRequestHttpException('No data sent');
 			}
 		}
 	}
