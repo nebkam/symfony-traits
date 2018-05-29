@@ -50,4 +50,12 @@ public function uploadImage(Request $request)
 	}
 ```
 
+### `ValidationExceptionListener`
+Since all `handle*` methods in this trait throw a `Nebkam\SymfonyTraits\ValidationException`, you have to catch it, either via `try {..} catch` in the controller or via global exception listener.
+To ease this, this package includes a sample exception listener, which returns validation errors in JSON. You just have to register it as a service:
 
+```yaml
+Nebkam\SymfonyTraits\EventListener\ValidationExceptionListener:
+    tags:
+        - { name: kernel.event_listener, event: kernel.exception }
+```
