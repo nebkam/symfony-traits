@@ -57,7 +57,8 @@ trait FormTrait
 		{
 		$encoded = $request->getContent();
 		$content = json_decode($encoded,true);
-		if (empty($encoded) || is_null($content))
+		if (empty($encoded)
+			|| $content === null)
 			{
 			throw new BadJSONRequestException;
 			}
@@ -103,14 +104,10 @@ trait FormTrait
 				{
 				return $file;
 				}
-			else
-				{
-				throw new ValidationException([$file->getErrorMessage()]);
-				}
+
+			throw new ValidationException([$file->getErrorMessage()]);
 			}
-		else
-			{
-			throw new BadRequestHttpException('No data sent');
-			}
+
+		throw new BadRequestHttpException('No data sent');
 		}
 	}

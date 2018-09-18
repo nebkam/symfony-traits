@@ -5,7 +5,8 @@
   "require": {
     "symfony/http-foundation": "3.* || 4.*",
     "symfony/http-kernel": "3.* || 4.*",
-    "symfony/form": "3.* || 4.*"
+    "symfony/form": "3.* || 4.*",
+    "ext-json": "^1.6"
   },
   "autoload": {
     "psr-4": {
