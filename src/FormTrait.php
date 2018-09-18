@@ -8,6 +8,8 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Symfony\Component\Validator\ConstraintViolationInterface;
+use Symfony\Component\Validator\ConstraintViolationListInterface;
 
 /**
  * @method Form createForm(string $type, mixed $data, array $options = null)
@@ -81,6 +83,26 @@ trait FormTrait
 				$errors[] = [
 					'field' => $error->getOrigin()->getName(),
 					'message' => $error->getMessage()
+				];
+				}
+			throw new ValidationException($errors);
+			}
+		}
+
+	/**
+	 * @param ConstraintViolationListInterface $violationList
+	 */
+	protected function handleValidationErrors(ConstraintViolationListInterface $violationList)
+		{
+		if (\count($violationList))
+			{
+			$errors = [];
+			/** @var ConstraintViolationInterface $violation */
+			foreach ($violationList as $violation)
+				{
+				$errors[] = [
+					'field'   => $violation->getPropertyPath(),
+					'message' => $violation->getMessage()
 				];
 				}
 			throw new ValidationException($errors);
