@@ -10,17 +10,16 @@ Few helper traits for quicker API  development in Symfony
 public function create(Request $request)
 	{
 	$entity = new Entity();
-	$this->handleJSONForm($request, $entity, EntityType::class);
+	$this->handleJSONForm($request, $entity, EntityType::class, $options = [], $clearMissingFields = true);
 	// persist and flush $entity
 ```
 
 ```php
 public function edit(Request $request,Entity $entity)
 	{
-	$this->handleJSONForm($request, $entity, EntityType::class);
+	$this->handleJSONForm($request, $entity, EntityType::class, $options = [], $clearMissingFields = true);
 	// flush entity
 ```
-
 ### `handleForm` 
 - controller helper method for traditional form data in `GET` or `POST`
 - I advice using traditional form data only when JSON is out of place (i.e. `GET` params)
@@ -31,7 +30,7 @@ public function example(Request $request)
 	$domain = new Domain();
 	if ($request->query->count() > 0)
 		{
-		$this->handleForm($request, $params, DomainType::class);
+		$this->handleForm($request, $params, DomainType::class, $options = [], $clearMissingFields = true);
 		}
 	
 	// do something with $domain

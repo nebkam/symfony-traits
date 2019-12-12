@@ -22,11 +22,12 @@ trait FormTrait
 	 * @param Request $request
 	 * @param mixed $domain
 	 * @param string $formType
+     * @param array $options
 	 * @return Form
 	 */
-	protected function handleForm(Request $request, $domain, $formType)
+	protected function handleForm(Request $request, $domain, $formType, $options = [])
 		{
-		$form = $this->createForm($formType,$domain);
+		$form = $this->createForm($formType,$domain, $options);
 		$form->handleRequest($request);
 		$this->handleFormErrors($form);
 
@@ -39,15 +40,16 @@ trait FormTrait
 	 * @param Request $request Request with JSON posted data
 	 * @param object $domain
 	 * @param string $formType
+     * @param array $options
 	 * @param boolean $clearMissingFields set to TRUE when you want to validate the whole form (i.e. in POST or PUT) or to FALSE when form contains partial data (i.e. in PATCH)
 	 * @return Form
 	 * @throws BadJSONRequestException
 	 */
-	protected function handleJSONForm(Request $request, $domain, $formType, $clearMissingFields = true)
+	protected function handleJSONForm(Request $request, $domain, $formType, $options = [], $clearMissingFields = true)
 		{
 		$data = $this->getJsonContent($request);
 
-		$form = $this->createForm($formType,$domain);
+		$form = $this->createForm($formType,$domain, $options);
 		$form->submit($data,$clearMissingFields);
 		$this->handleFormErrors($form);
 
