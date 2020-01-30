@@ -4,13 +4,13 @@ namespace Nebkam\SymfonyTraits\EventListener;
 
 use Nebkam\SymfonyTraits\Exception\ValidationException;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
+use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 
 class ValidationExceptionListener
 	{
-	public function onKernelException(GetResponseForExceptionEvent $event)
+	public function onKernelException(ExceptionEvent $event)
 		{
-		$exception = $event->getException();
+		$exception = $event->getThrowable();
 
 		if ($exception instanceof ValidationException)
 			{
