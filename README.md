@@ -1,3 +1,5 @@
+[![Latest Stable Version](https://poser.pugx.org/nebkam/symfony-traits/v)](//packagist.org/packages/nebkam/symfony-traits)
+
 # Symfony Traits
 Few helper traits for quicker API  development in Symfony
 
