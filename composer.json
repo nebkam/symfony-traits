@@ -13,5 +13,13 @@
     "psr-4": {
       "Nebkam\\SymfonyTraits\\": "src"
     }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Nebkam\\SymfonyTraits\\Test\\": "tests"
+    }
+  },
+  "require-dev": {
+    "symfony/phpunit-bridge": "^5.0"
   }
 }

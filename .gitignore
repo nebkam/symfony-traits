@@ -1,3 +1,10 @@
-vendor/*
+# Development
+.idea
+
+# Composer
+vendor
 composer.lock
-.idea/*
+composer.phar
+
+# PHPUnit
+.phpunit.result.cache
