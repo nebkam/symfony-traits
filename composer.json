@@ -20,6 +20,7 @@
     }
   },
   "require-dev": {
-    "symfony/phpunit-bridge": "^5.0"
+    "symfony/phpunit-bridge": "5.*",
+    "symfony/framework-bundle": "5.*"
   }
 }
