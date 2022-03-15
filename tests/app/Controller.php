@@ -20,16 +20,14 @@ class Controller extends AbstractController
 		$this->formFactory = $formFactory;
 		}
 
-	/**
-	 * @param Request $request
-	 * @param $domain
-	 * @param $formType
-	 * @param $options
-	 * @return Form
-	 */
 	public function callHandleForm(Request $request, $domain, $formType, $options = [])
 		{
 		return $this->handleForm($request, $domain, $formType, $options);
+		}
+
+	public function callHandleJsonForm(Request $request, $domain, $formType, $options = [], $clearMissingFields = true)
+		{
+		return $this->handleJSONForm($request, $domain, $formType, $options, $clearMissingFields);
 		}
 
 	protected function createForm(string $type, $data = null, array $options = []): FormInterface
