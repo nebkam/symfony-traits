@@ -8,7 +8,7 @@ use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 
 class ValidationExceptionListener
 	{
-	public function onKernelException(ExceptionEvent $event)
+	public function onKernelException(ExceptionEvent $event): void
 		{
 		$exception = $event->getThrowable();
 
