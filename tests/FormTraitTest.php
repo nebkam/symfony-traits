@@ -22,7 +22,7 @@ class FormTraitTest extends KernelTestCase
 			->addTypeExtension(new FormTypeHttpFoundationExtension())
 			->getFormFactory();
 		$controller  = new Controller($formFactory);
-		$form = $controller->callHandleForm($request, $data, FormType::class);
+		$form        = $controller->callHandleForm($request, $data, FormType::class);
 		$this->assertInstanceOf(FormInterface::class, $form);
 		}
 
@@ -36,5 +36,27 @@ class FormTraitTest extends KernelTestCase
 		$controller  = new Controller($formFactory);
 		$this->expectException(BadJSONRequestException::class);
 		$controller->callHandleJsonForm($request, $data, FormType::class);
+		}
+
+	public function testGetJsonContent(): void
+		{
+		$request     = new Request([], [], [], [], [], [], '{"foo":"bar"}');
+		$formFactory = Forms::createFormFactoryBuilder()
+			->addTypeExtension(new FormTypeHttpFoundationExtension())
+			->getFormFactory();
+		$controller  = new Controller($formFactory);
+		$content     = $controller->callGetJsonContent($request);
+		self::assertEquals(['foo' => 'bar'], $content);
+		}
+
+	public function testGetJsonValue(): void
+		{
+		$request     = new Request([], [], [], [], [], [], '{"foo":"bar"}');
+		$formFactory = Forms::createFormFactoryBuilder()
+			->addTypeExtension(new FormTypeHttpFoundationExtension())
+			->getFormFactory();
+		$controller  = new Controller($formFactory);
+		$value       = $controller->callGetJsonValue($request, 'foo');
+		self::assertEquals('bar', $value);
 		}
 	}

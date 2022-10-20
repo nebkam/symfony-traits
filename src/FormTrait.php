@@ -75,6 +75,13 @@ trait FormTrait
 		return $content;
 		}
 
+	protected function getJsonValue(Request $request, string $name)
+		{
+		$content = $this->getJsonContent($request);
+
+		return $content[$name] ?? null;
+		}
+
 	/**
 	 * @param Form $form
 	 * @throws ValidationException

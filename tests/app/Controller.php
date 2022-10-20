@@ -20,6 +20,16 @@ class Controller extends AbstractController
 		$this->formFactory = $formFactory;
 		}
 
+	public function callGetJsonContent(Request $request)
+		{
+		return $this->getJsonContent($request);
+		}
+
+	public function callGetJsonValue(Request $request, string $name)
+		{
+		return $this->getJsonValue($request, $name);
+		}
+
 	public function callHandleForm(Request $request, $domain, $formType, $options = [])
 		{
 		return $this->handleForm($request, $domain, $formType, $options);
