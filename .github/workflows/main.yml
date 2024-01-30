@@ -14,11 +14,11 @@ jobs:
     strategy:
       max-parallel: 10
       matrix:
-        php: ['7.4', '8.0', '8.1']
-        sf_version: ['5.*', '6.*']
+        php: ['7.4', '8.0', '8.1', '8.2', '8.3']
+        sf_version: ['5.*', '6.*', '7.*']
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       
       - name: Setup PHP and extensions
         uses: shivammathur/setup-php@v2
