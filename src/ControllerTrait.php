@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Use on classes extending Symfony\Bundle\FrameworkBundle\Controller\AbstractController
  *
- * @method json(mixed $data, int $status, array $headers, array[] $context)
+ * @method json(mixed $data, int $status = 200, array $headers = [], array[] $context = [])
  */
 trait ControllerTrait
 	{
