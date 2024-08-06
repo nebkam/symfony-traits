@@ -24,14 +24,14 @@ trait FormTrait
 	 * @param mixed $domain
 	 * @param string $formType
 	 * @param array $options
-	 * @param bool $manuallySubmit
+	 * @param bool $forceSubmit
 	 * @return FormInterface
 	 */
-	protected function handleForm(Request $request, $domain, string $formType, array $options = [], bool $manuallySubmit = false): FormInterface
+	protected function handleForm(Request $request, $domain, string $formType, array $options = [], bool $forceSubmit = false): FormInterface
 		{
 		$form = $this->createForm($formType, $domain, $options);
 		$form->handleRequest($request);
-		if ($manuallySubmit)
+		if ($forceSubmit)
 			{
 			$form->submit($request->request->all());
 			}

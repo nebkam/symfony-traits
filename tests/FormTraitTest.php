@@ -28,6 +28,10 @@ class FormTraitTest extends KernelTestCase
 		$controller  = new Controller($formFactory);
 		$form        = TestHelper::callPrivateMethod($controller, 'handleForm', [$request, $data, FormType::class]);
 		$this->assertInstanceOf(FormInterface::class, $form);
+		self::assertFalse($form->isSubmitted());
+		// Force submit
+		$form = TestHelper::callPrivateMethod($controller, 'handleForm', [$request, $data, FormType::class, [], true]);
+		self::assertTrue($form->isSubmitted());
 		}
 
 	/**
