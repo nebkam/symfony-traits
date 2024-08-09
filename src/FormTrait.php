@@ -31,7 +31,7 @@ trait FormTrait
 		{
 		$form = $this->createForm($formType, $domain, $options);
 		$form->handleRequest($request);
-		if ($forceSubmit)
+		if ($forceSubmit && !$form->isSubmitted())
 			{
 			$form->submit($request->request->all());
 			}
