@@ -3,10 +3,10 @@
   "description": "Helper trait to ease writing APIs in Symfony",
   "license": "MIT",
   "require": {
-    "symfony/http-foundation": "5.* || 6.* || 7.*",
+    "symfony/http-foundation": "^5.4.46 || ^6.4.14 || >=7.1.7",
     "symfony/http-kernel": "5.* || 6.* || 7.*",
     "symfony/form": "5.* || 6.* || 7.*",
-    "symfony/validator": "5.* || 6.* || 7.*",
+    "symfony/validator": "^5.4.43 || ^6.4.11 || >=7.1.4",
     "ext-json": "*"
   },
   "autoload": {
